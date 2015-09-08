@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fish Tank</title>
+
+  <style>
+    .flipped {
+      transform: scaleX(-1);
+    }
+  </style>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      swimRight();
+
+      setInterval(function() {
+        $.ajax({
+          url: "http://localhost:8080/crs/fish",
+          crossDomain: true
+        }).done(function(body) {
+          $("#fish-img").attr("src", "http://localhost:8080/" + body + "-fish.png");
+        });
+      }, 1000);
+    });
+
+    function swimLeft() {
+      $("#fish").animate({left: "-=500", transform: "scaleX(-1)"}, 4000, "swing", swimRight);
+      $("#fish").addClass('flipped');
+    }
+    function swimRight() {
+      $("#fish").animate({left: "+=500", transform: "scaleX(1)"}, 4000, "swing", swimLeft);
+      $("#fish").removeClass('flipped');
+    }
+  </script>
+</head>
+<body>
+  <div id="fish" style="position:absolute; top:200px; left: 200px">
+    <img id="fish-img" src="http://localhost:8080/blue-fish.png">
+  </div>
+</body>
+</html>

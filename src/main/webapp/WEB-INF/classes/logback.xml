@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>/var/log/tomcat7/catalina.out</file>
+
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+      </Pattern>
+    </layout>
+  </appender>
+
+  <logger name="org.familysearch" level="INFO"/>
+
+  <logger name="com.amazonaws" level="WARN" />
+
+  <root level="INFO">
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>
